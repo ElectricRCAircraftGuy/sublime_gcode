@@ -26,6 +26,7 @@ Gabriel Staples
                 1. [Choosing `scope` names for your syntax definition file](#choosing-scope-names-for-your-syntax-definition-file)
                 1. [Adding a unique subscope](#adding-a-unique-subscope)
             1. [To _check the syntax highlighting scope_ of a particular place in a source code file...](#to-check-the-syntax-highlighting-scope-of-a-particular-place-in-a-source-code-file)
+            1. [Choosing scopes with desired color and formatting](#choosing-scopes-with-desired-color-and-formatting)
             1. [To _modify and test changes to this package locally_...](#to-_modify-and-test-changes-to-this-package-locally_)
 
 <!-- /MarkdownTOC -->
@@ -226,6 +227,8 @@ etc.
 
 It is a good idea to use the naming conventions established by TextMate as a starting point, as they seem to be a sort of "industry standard". **However, what matters even more are the `scope` names in your color scheme file,** so ensure whatever scope names you use, they are in your color scheme file (`Preferences` --> `Customize Color Scheme`), as that's even more important! **Choosing `scope` names from your color scheme file is the best thing to do.**
 
+See the section below titled ["Choosing scopes with desired color and formatting"](#choosing-scopes-with-desired-color-and-formatting) for more tips and techniques.
+
 <a id="adding-a-unique-subscope"></a>
 ##### Adding a unique subscope
 
@@ -260,6 +263,47 @@ For an additional explanation of and example of this concept above, see [my comm
 <a id="to-check-the-syntax-highlighting-scope-of-a-particular-place-in-a-source-code-file"></a>
 #### To _check the syntax highlighting scope_ of a particular place in a source code file...
 ...in order to check to see if your syntax highlighting is working, or to see what scope a certain color and formatting come from for a syntax highlighting you like, place your cursor in the code where you want to check, then go to `Tools` --> `Developer` --> `Show Scope Name`. Click the "Copy" link in the little box that pops up over the source code if you'd like to copy that scope name.
+
+<a id="choosing-scopes-with-desired-color-and-formatting"></a>
+#### Choosing scopes with desired color and formatting
+
+Read the sections just above first, to get full context on what I'm doing here, and why/how it works. 
+
+Once you are ready to **choose desired colors and formatting _for a new syntax and file type_,** the trick I like to do to find the right `scope` for the job (ie: formatting that I like and that makes sense) is this: 
+
+1. Ensure you have your desired color scheme activated in Sublime Text: `Preferences` --> `Select Color Scheme...` --> choose a color scheme. I really like `Monokai` the best, which was the default in Sublime Text 3. I still use it in Sublime Text 4.
+1. Open up a file type you are very familiar with in this color scheme, such as a `.c` C source file.
+1. Find a color and format you like and which makes sense for the job. Ex: in gcode files, `G` and `M` commands are essentially functions, so, in a C source file I'd find a function call, such as `printf()`, which has the formatting I want for a `G` command, and I'd put my cursor on it.
+1. Go to `Tools` --> `Developer` --> `Show Scope Name` to see the scope. This is the scope for a C `printf()` function _call_ (not definition):
+    ```
+    source.c++ meta.function.c++ meta.block.c++ meta.function-call.c++ support.function.C99.c
+    ```
+1. The part I care about is the end scope, which is `support.function.C99.c`. As described in the ["Adding a unique subscope"](#adding-a-unique-subscope) section above, the `.C99.c` subscope parts don't matter here to me. So, strip them off. That leaves us with the `support.function` scope. 
+1. Open up your color scheme via `Preferences` --> `Customize Color Scheme` in order to search the color scheme for this scope to ensure it exists there. In the left-hand pane, I search for `support.function`. I find this entry:
+    ```jsonc
+    {
+        "name": "Library function",
+        "scope": "support.function, support.macro",
+        "foreground": "var(blue)"
+    },
+    ```
+    Notice the `foreground": "var(blue)"` formatting! That's where this scope for the C `printf()` function gets its formatting! If I like that formatting and want it for `G` commands in `gcode` files, I'll use the `support.function` scope for those `G` commands as well, giving it a unique subscope to ultimately be this scope: `support.function.gcode`. 
+1. Done! That's one way to find and set a desired scope. 
+1. Going further: function _definitions_, not calls, in C, have this scope:
+    ```
+    source.c++ meta.function.c++ meta.toc-list.full-identifier.c++ entity.name.function.c++
+    ```
+    The scope part I care about is at the far right: `entity.name.function.c++`. Strip off the `.c++` and I get `entity.name.function`. I search for that in the color scheme as described above, and it doesn't exist. _But_, `entity.name` _does_ exist! That means this is the scope which sets the formatting in this case. This entry in the color scheme file for Monokai is:
+    ```jsonc
+    {
+        "name": "Entity name",
+        "scope": "entity.name - (entity.name.filename | entity.name.section | entity.name.tag | entity.name.label)",
+        "foreground": "var(yellow2)"
+    },
+    ```
+    The `entity.name - (...)` part means: "apply this formatting to the `entity.name` scope, and all its subscopes _except for_ these in the list we are subtracting off." You can see the formatting is setting the `foreground` to `var(yellow2)`. To be sure of this, copy and paste that block to the right-hand pane and change that to `var(blue)` and ensure the color for your function definitions in C instantly changes. Yep! It sure does! (I just tested this). So, that means I did indeed find the right scope! Anyway, if I like this scope format for something else in my `gcode` syntax highlighting, I'll use scope `entity.name.gcode` as my unique scope to map to this formatting!
+
+    Don't forget to delete the customization you just made in the right-hand pane when done.
 
 <a id="to-_modify-and-test-changes-to-this-package-locally_"></a>
 #### To _modify and test changes to this package locally_...
