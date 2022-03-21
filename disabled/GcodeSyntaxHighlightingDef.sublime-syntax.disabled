@@ -1,0 +1,55 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: G-code
+file_extensions:
+  - nc
+  - ngc
+  - prg
+  - mpf
+  - gcode
+scope: source.iso6983
+contexts:
+  main:
+    - match: G\d+
+      comment: g commands
+      scope: support.variable
+    - match: M\d+
+      comment: m commands
+      scope: support.constant
+    - match: \(.*\)
+      comment: comments
+      scope: comment.line
+    - match: (IF|THEN|AND|OR|WHILE|GOTO)
+      comment: flow control operators
+      scope: keyword.control
+    - match: (ABS|ACOS|ASIN|ATAN|COS|LN|EXP|FIX|FUP|MOD|ROUND|SQRT|SIN|TAN)
+      comment: functions
+      scope: support.function
+    - match: (GT|LT|GE|LE|EQ)
+      comment: comparison operators
+      scope: keyword.operator
+    - match: (?<=GOTO|DO)\d+
+      comment: flow control locations
+      scope: markup.italic
+    - match: (#\d+)
+      comment: variables
+      scope: variable.other
+    - match: '([XYZABC]{1})(?=([\d\.-])*)'
+      comment: positions
+      scope: markup.bold
+    - match: '([IJK])(?=([\d\.-])*)'
+      comment: arc positions
+      scope: markup.italic
+    - match: '(?<=[XYZABC])([\d\.-])*'
+      comment: positions
+      scope: constant.numeric
+    - match: '(?<= )[FS]([\d\.-])+'
+      comment: feeds & speeds
+      scope: variable.parameter
+    - match: '([ON]([\d\.-])+)'
+      comment: O & N numberes
+      scope: support.function
+    - match: '(\[|\])'
+      comment: brackets
+      scope: string.interpolated
