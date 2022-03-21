@@ -5,6 +5,7 @@
 Gabriel Staples
 
 
+
 # Table of Contents
 <details>
 <summary><b>(click to expand)</b></summary>
@@ -15,6 +16,7 @@ Gabriel Staples
 1. [Installation](#installation)
     1. [1. Package Control](#NOT YET FUNCTIONAL; use manual method below for now)
     1. [2. Manual installation](#2-manual-installation)
+1. [Issues](#issues)
 1. [Developer Notes & Package Development Tutorial](#developer-notes--package-development-tutorial)
     1. [References:](#references)
     1. [Sublime Text packages and syntax highlighting--how it all works](#sublime-text-packages-and-syntax-highlighting--how-it-all-works)
@@ -31,6 +33,7 @@ Gabriel Staples
 
 <!-- /MarkdownTOC -->
 </details>
+
 
 
 <a id="sublime_gcode"></a>
@@ -93,6 +96,14 @@ ln -si ~/dev/sublime_gcode ~/.config/sublime-text-3/Packages/gcode
 ```
 
 That's it! The `gcode` entry is now instantly available in your syntax highlighting menu.
+
+
+
+<a id="issues"></a>
+# Issues
+
+If anything doesn't work or look as expected with the the main `gcode` syntax highlighter, please open up an issue in this GitHub repo and I'll address it. That includes text that should be highlighted, but isn't, missing gcode file extensions, etc.
+
 
 
 <a id="developer-notes--package-development-tutorial"></a>

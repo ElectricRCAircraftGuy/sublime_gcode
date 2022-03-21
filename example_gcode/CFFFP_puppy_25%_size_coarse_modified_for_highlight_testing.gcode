@@ -18,6 +18,43 @@ G1 Z15.0 F6000 ;Move the platform down 15mm
 ;Prime the extruder
 G92 E0
 G1 F200 E3
+WHILE [conditional] DO3
+
+IF [#100 EQ 0] GOTO 110
+GOTO 200
+
+IF
+#123
+THEN
+GOTO
+GOTO778
+ABS
+COS
+ATAN
+GT
+LT
+GE EQ
+
+G
+
+;From: https://gcodetutor.com/cnc-macro-programming/cnc-variables.html
+#101=35.0 (DIA A);
+#102=20.0 (DIA B);
+#103=50.0 (BAR STOCK DIA);
+X5.5
+X#101
+;
+N1 (ROUGH TURN);
+G54 G40;
+T0101 M06;
+G50 S2500;
+G96 S280 M03;
+G00 X[#103+3] Z5.0 M08;
+G01 Z0.1 F0.1;
+X-0.2 F0.05;
+G00 X[#103+1] Z2.0;
+
+
 G92 E0
 G92 E0
 G92 E0

@@ -24,35 +24,61 @@ file_extensions:
 scope: source.gcode
 contexts:
   main:
+    # Notes:
+    # 1. It appears that matches are done in order, from top to bottom. If a higher up regex matches
+    # first, subsequent (lower) regexes will be shadowed and NOT match. So, place more- specific
+    # matches, such as `G28`, BEFORE more-general matches, such as `G\d+`!
+    # 1. Marlin-type gcode definitions are here, so you can see what each command/code does:
+    # https://marlinfw.org/meta/gcode/
+    # 1. Use https://regex101.com/ to verify, check, and understand the `match` regular expressions.
+
     - comment: inline comments
       match: \(.*\)
       scope: comment.inline.gcode
-    - comment: line comments
+    - comment: line comments (whole line, or end of line)
       match: ;.*$
       scope: comment.line.gcode
-    - comment: g commands
+    - comment: G28 "Home" cmd
+      match: G28
+      scope: support.function.gcode markup.bold.gcode
+    - comment: Other G commands
       match: G\d+
       scope: support.function.gcode
-    - comment: m commands
+    - comment: M commands
       match: M\d+
-      scope: support.constant
+      scope: entity.name.gcode
     - comment: flow control operators
-      match: (IF|THEN|AND|OR|WHILE|GOTO)
-      scope: keyword.control
+      # See: https://www.cnccookbook.com/cnc-g-code-macro-conditions-looping/
+      match: IF|THEN|AND|OR|WHILE|GOTO
+      scope: keyword.control.gcode
     - comment: functions
-      match: (ABS|ACOS|ASIN|ATAN|COS|LN|EXP|FIX|FUP|MOD|ROUND|SQRT|SIN|TAN)
-      scope: support.function
+      match: ABS|ACOS|ASIN|ATAN|COS|LN|EXP|FIX|FUP|MOD|ROUND|SQRT|SIN|TAN
+      scope: entity.name.gcode
     - comment: comparison operators
-      match: (GT|LT|GE|LE|EQ)
-      scope: keyword.operator
+      match: GT|LT|GE|LE|EQ
+      scope: keyword.operator.gcode
     - comment: flow control locations
+      # (I think) this uses positive lookbehind (see regex101.com and here:
+      # https://www.regular-expressions.info/lookaround.html) to match only the number following
+      # a `GOTO` or `DO` statement
       match: (?<=GOTO|DO)\d+
-      scope: markup.italic
+      scope: markup.italic.gcode
     - comment: variables
-      match: (#\d+)
-      scope: variable.other
+      # For examples of variables in gcode, see:
+      # https://gcodetutor.com/cnc-macro-programming/cnc-variables.html
+      match: (#\d+)?(=)?(\d*\.?\d*)
+      # Specify the proper scope for each capture group; see:
+      # http://www.sublimetext.com/docs/syntax.html
+      captures:
+        1: variable.other.gcode
+        2: keyword.operator.assignment.gcode
+        3: constant.numeric.value.gcode
+
+    ########## PICK BACK UP HERE! You may need to move the match above down since it matches all
+    # stranded/standalone numbers via the 3rd capture group.
+
     - comment: positions
-      match: '([XYZABC]{1})(?=([\d\.-])*)'
+      match: ([XYZABC]{1})(?=([\d\.-])*)
       scope: markup.bold
     - comment: arc positions
       match: '([IJK])(?=([\d\.-])*)'
@@ -63,7 +89,7 @@ contexts:
     - comment: feeds & speeds
       match: '(?<= )[FS]([\d\.-])+'
       scope: variable.parameter
-    - comment: O & N numberes
+    - comment: O & N numbers
       match: '([ON]([\d\.-])+)'
       scope: support.function
     - comment: brackets
