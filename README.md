@@ -75,7 +75,7 @@ git clone https://github.com/ElectricRCAircraftGuy/sublime_gcode.git
 mv sublime_gcode gcode
 ```
 
-That's it! It's now instantly available in your syntax highlighting menu.
+That's it! The `gcode` entry is now instantly available in your syntax highlighting menu.
 
 
 <a id="developer-notes--package-development-tutorial"></a>
@@ -192,7 +192,7 @@ If my color scheme JSON file does NOT have any `scope` entry for `support.consta
 <a id="choosing-scope-names-for-your-syntax-definition-file"></a>
 ##### Choosing `scope` names for your syntax definition file
 
-TextMate describes recommended `scope` naming conventions in section "12.4 Naming Conventions" of their manual here: https://macromates.com/manual/en/language_grammars. Sub-bullets should be scoped with a dot (`.`), so when you see this in the document:
+TextMate describes recommended `scope` naming conventions in section **"12.4 Naming Conventions"** of their manual here: https://macromates.com/manual/en/language_grammars. Sub-bullets should be scoped with a dot (`.`), so when you see this in the document:
 
 > - comment
 >     - line
@@ -217,7 +217,7 @@ In the example above, using a `scope` of `support.constant` works because that s
 
 The advantage of this is now users of your syntax highlighting package, and other package maintainers, can customize colors and formatting to affect _just scopes for your package_, if they so wish. They can override the `support.constant.gcode` scope in their user settings for the color scheme with this rule, for instance:
 
-```json
+```jsonc
 // Documentation at https://www.sublimetext.com/docs/color_schemes.html
 {
     "variables":
