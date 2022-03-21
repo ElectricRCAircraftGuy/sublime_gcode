@@ -1,0 +1,77 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: CNC
+scopeName: source.cnc
+fileTypes: [eia,nc,ngc,prg,mpf,gcode]
+uuid: 877ff98b-b20a-4fbe-9cb8-af4369ea9b44
+
+patterns:
+
+- comment: G 28
+  name: markup.bold.cnc
+  match: (G28)|(G5[1-9](\.)\d+)|(G5[1-9])
+  
+- comment: G other
+  name: storage.cnc
+  match:  (G)((\.)|(\d))+ #(G\d+)
+
+- comment: 
+  name: string.cnc 
+  match: ([PQR])((\.)|(\d)|(\-|\+))+ #([PQR])(([([A-Z])])|(\d+))+
+  captures:
+    '1': {name: markup.heading.cnc} 
+    '8': {name: markup.bold.cnc}
+      
+- comment: op. number
+  name: invalid.cnc
+  match: (\b[O]([\d\.-])+) #((\b)|(^[A-Z]+))\O\d+
+
+
+- comment: Tool
+  name:  keyword.control.def.ruby #markup.heading.cnc
+  match: T((\d))+
+
+- comment: axes
+  name:  string.cnc
+  match: ([ZABC])((\.)|(\d)|(\-|\+))+
+  captures:
+   '0': {name: support.function.cnc}
+
+- comment: axes
+  name: string.cnc
+  match: ([XYUW])((\.)|(\d)|(\-|\+))+
+  captures:
+    '1': {name: markup.changed.cnc}
+   # '2': {name: entity.other.inherited-class.cnc}
+
+- comment: .
+  name: meta.structure.dictionary.json string.quoted.double.json.cnc
+  match: ([KJI]((\.)|(\d)|(\-))+)
+
+- comment: Feed/speed
+  name: constant.numeric.cnc
+  match: ([FS])((\.)|(\d)|(\-))+
+#   match: \bF(|-)(|.)\d+
+  
+- comment: comments
+  name: comment.cnc
+  match: \(([^()]*)\)
+  
+- comment: N
+  name: comment.cnc
+  match: \bN\d+
+  
+- comment: G 28
+  name: comment.cnc
+  match: \;.+
+  
+- comment: M code
+  name: entity.name.class.cnc
+  match: M((\.)|(\d)|(\-))+
+
+- comment: brackets
+  name: string.cnc
+  match: (\[|\])
+...
+
+# string
