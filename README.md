@@ -247,12 +247,19 @@ For an additional explanation of and example of this concept above, see [my comm
 
 <a id="to-_modify-and-test-changes-to-this-package-locally_"></a>
 #### To _modify and test changes to this package locally_...
-...in case you'd like to change it or contribute to it, follow the "manual installation" instructions above. If you have already installed it via Package Control, then what is in your `/home/$USERNAME/.config/sublime-text-3/Packages/gcode` folder will _override_ what is in your `/home/gabriel/.config/sublime-text-3/Installed Packages/gcode.sublime-package` zip file which Package Control installed, so long as the folder and file names are the same. 
+...in case you'd like to change it or contribute to it, follow the "manual installation" instructions above. If you have already installed it via Package Control, then what is in your `/home/$USERNAME/.config/sublime-text-3/Packages/gcode` folder will _override_ what is in your `/home/$USERNAME/.config/sublime-text-3/Installed Packages/gcode.sublime-package` zip file which Package Control installed, so long as the folder and file names are the same. 
 
 Modify any files in the `Packages/gcode` dir as desired. Each time you save, the changes will _instantly be reflected_ in all Sublime Text editors you have open. As a quick test:
 1. Open a gcode file.
 1. Click your cursor on some text in the file.
 1. Use the `Tools` --> `Developer` --> `Show Scope Name` trick to see what the scope is for that text.
 1. Open the corresponding `*.sublime-syntax` file.
-1. Change or delete the regular expression in the `match` entry for the corresponding `scope`, so that it no longer matches the text on which you placed your cursor.
+1. Change or delete the regular expression in the `match` entry for that corresponding `scope` you just found, so that it no longer matches the text on which you placed your cursor.
 1. Save the `*.sublime-syntax` file and you will instantly see the formatting of that text in the gcode file change. 
+1. Undo your change to the `match` entry and save again. The formatting will return to how it was.
+1. Go to `Preferences` --> `Customize Color Scheme`, and add a custom `rules` entry for that scope, with new formatting for that `scope`. Save it and watch the formatting instantly change again. Delete that custom entry when done, if desired.
+
+
+DONE! 
+
+**You're now a solid beginner at Sublime Text packages and syntax highlighting, just like me! 😀**
