@@ -10,7 +10,7 @@
 ;MAXZ:22.7
 ;Generated with Cura_SteamEngine 4.13.1
 M104 S200
-M105
+M105 (inline comment) G1 F200 E3
 M109 S200
 M82 ;absolute extrusion mode
 G28 ;Home

@@ -3,54 +3,69 @@
 # This repo: https://github.com/ElectricRCAircraftGuy/sublime_gcode
 # Sublime Text syntax highlighting documentation: http://www.sublimetext.com/docs/syntax.html
 name: gcode
+# File extensions references:
+# 1. https://www.mekanika.io/blog/learn-1/our-guide-to-familiarize-yourself-with-cnc-file-formats-20
+#    - under the section "Machining Files (G-Code files)", contains:
+#    .nc, .cnc, .ngc, .gcode, .tap
+# 1. https://en.wikipedia.org/wiki/G-code - in box at top-right of article, under "extensions":
+#    .gcode, .mpt, .mpf, .nc
+# 1. https://forums.autodesk.com/t5/powerinspect-forum/trying-to-create-probe-path-g-code-eia-file-for-mazak-vcu500-5ax/td-p/7760654
+#    .eia
 file_extensions:
+  - cnc
+  - eia
+  - gcode
+  - mpf
+  - mpt
   - nc
   - ngc
   - prg
-  - mpf
-  - gcode
-scope: source.iso6983
+  - tap
+scope: source.gcode
 contexts:
   main:
-    - match: G\d+
-      comment: g commands
-      scope: support.variable
-    - match: M\d+
-      comment: m commands
+    - comment: inline comments
+      match: \(.*\)
+      scope: comment.inline.gcode
+    - comment: line comments
+      match: ;.*$
+      scope: comment.line.gcode
+    - comment: g commands
+      match: G\d+
+      scope: support.function.gcode
+    - comment: m commands
+      match: M\d+
       scope: support.constant
-    - match: \(.*\)
-      comment: comments
-      scope: comment.line
-    - match: (IF|THEN|AND|OR|WHILE|GOTO)
-      comment: flow control operators
+    - comment: flow control operators
+      match: (IF|THEN|AND|OR|WHILE|GOTO)
       scope: keyword.control
-    - match: (ABS|ACOS|ASIN|ATAN|COS|LN|EXP|FIX|FUP|MOD|ROUND|SQRT|SIN|TAN)
-      comment: functions
+    - comment: functions
+      match: (ABS|ACOS|ASIN|ATAN|COS|LN|EXP|FIX|FUP|MOD|ROUND|SQRT|SIN|TAN)
       scope: support.function
-    - match: (GT|LT|GE|LE|EQ)
-      comment: comparison operators
+    - comment: comparison operators
+      match: (GT|LT|GE|LE|EQ)
       scope: keyword.operator
-    - match: (?<=GOTO|DO)\d+
-      comment: flow control locations
+    - comment: flow control locations
+      match: (?<=GOTO|DO)\d+
       scope: markup.italic
-    - match: (#\d+)
-      comment: variables
+    - comment: variables
+      match: (#\d+)
       scope: variable.other
-    - match: '([XYZABC]{1})(?=([\d\.-])*)'
-      comment: positions
+    - comment: positions
+      match: '([XYZABC]{1})(?=([\d\.-])*)'
       scope: markup.bold
-    - match: '([IJK])(?=([\d\.-])*)'
-      comment: arc positions
+    - comment: arc positions
+      match: '([IJK])(?=([\d\.-])*)'
       scope: markup.italic
-    - match: '(?<=[XYZABC])([\d\.-])*'
-      comment: positions
+    - comment: positions
+      match: '(?<=[XYZABC])([\d\.-])*'
       scope: constant.numeric
-    - match: '(?<= )[FS]([\d\.-])+'
-      comment: feeds & speeds
+    - comment: feeds & speeds
+      match: '(?<= )[FS]([\d\.-])+'
       scope: variable.parameter
-    - match: '([ON]([\d\.-])+)'
-      comment: O & N numberes
+    - comment: O & N numberes
+      match: '([ON]([\d\.-])+)'
       scope: support.function
-    - match: '(\[|\])'
-      comment: brackets
+    - comment: brackets
+      match: '(\[|\])'
       scope: string.interpolated
