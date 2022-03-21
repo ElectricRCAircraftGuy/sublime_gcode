@@ -12,7 +12,7 @@
 		<string>gcode</string>
 	</array>
 	<key>name</key>
-	<string>CNC</string>
+	<string>gcode-alternate</string>
 	<key>patterns</key>
 	<array>
 		<dict>
