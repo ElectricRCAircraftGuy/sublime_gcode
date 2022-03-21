@@ -21,7 +21,7 @@ Gabriel Staples
         1. [1. Sublime Text packages](#1-sublime-text-packages)
         1. [2. Syntax highlighting](#2-syntax-highlighting)
             1. [Multiple syntax highlighting definitions in one package](#multiple-syntax-highlighting-definitions-in-one-package)
-            1. [`scope` --> Color Scheme mapping: How do syntax highlighting `scope` values map to actual syntax highlighting colors and formats?](#scope----color-scheme-mapping-how-do-syntax-highlighting-scope-values-map-to-actual-syntax-highlighting-colors-and-formats)
+            1. [_`scope` --> Color Scheme mapping:_ How do syntax highlighting `scope` values map to actual syntax highlighting colors and formats?](#scope----color-scheme-mapping-how-do-syntax-highlighting-scope-values-map-to-actual-syntax-highlighting-colors-and-formats)
                 1. [`scope` hierarchy](#scope-hierarchy)
                 1. [Choosing `scope` names for your syntax definition file](#choosing-scope-names-for-your-syntax-definition-file)
                 1. [Adding a unique subscope](#adding-a-unique-subscope)
@@ -144,7 +144,7 @@ If a single package contains only one syntax highlighting definition file (of th
 To temporarily **_disable_ a syntax highlighting definition file**, simply rename it so it no longer has the `.tmLanguage` or `.sublime-syntax` extension. I like to just add `.disabled` to the very end to make it clear what I am doing. Example: rename `whatever.sublime-syntax` to `whatever.sublime-syntax.disabled`.
 
 <a id="scope----color-scheme-mapping-how-do-syntax-highlighting-scope-values-map-to-actual-syntax-highlighting-colors-and-formats"></a>
-#### `scope` --> Color Scheme mapping: How do syntax highlighting `scope` values map to actual syntax highlighting colors and formats?
+#### _`scope` --> Color Scheme mapping:_ How do syntax highlighting `scope` values map to actual syntax highlighting colors and formats?
 
 The highest-level `scope` entry in a `.sublime-syntax` file can be *anything* you want. It appears to have no bearing on the mapping to the formatting or colors. So, `gcode` below can be anything.
 
@@ -238,6 +238,8 @@ The advantage of this is now users of your syntax highlighting package, and othe
 ```
 
 If they do *not* override this scope, however, there is no problem! Scope `support.constant.gcode` may have no matching `scope` entry in the color scheme, but `support.constant` will, so the default `support.constant` formatting will be applied to your `support.constant.gcode` scope!
+
+For an additional explanation of and example of this concept above, see [my comment on this PR here](https://github.com/wbond/package_control_channel/pull/8454#issuecomment-1073181257).
 
 <a id="to-check-the-syntax-highlighting-scope-of-a-particular-place-in-a-source-code-file"></a>
 #### To _check the syntax highlighting scope_ of a particular place in a source code file...
