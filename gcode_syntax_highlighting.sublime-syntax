@@ -1,7 +1,8 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/syntax.html
-name: G-code
+# This repo: https://github.com/ElectricRCAircraftGuy/sublime_gcode
+# Sublime Text syntax highlighting documentation: http://www.sublimetext.com/docs/syntax.html
+name: gcode
 file_extensions:
   - nc
   - ngc

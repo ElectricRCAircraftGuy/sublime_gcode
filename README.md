@@ -59,20 +59,36 @@ Open the Command Palette via `Tools` --> `Command Palette...`, _or_ by pressing 
 <a id="2-manual-installation"></a>
 ## 2. Manual installation
 
-In Sublime Text, find the path to your `Packages` folder by clicking `Preferences` --> `Browse Packages...`. This will open up your GUI file manager to the path where Sublime Text packages are stored. For me on Linux Ubuntu 20.04, that's `/home/gabriel/.config/sublime-text-3/Packages` (even though I am running Sublime Text 4). 
+In Sublime Text, find the path to your `Packages` folder by clicking `Preferences` --> `Browse Packages...`. This will open up your GUI file manager to the path where Sublime Text packages are stored. For me on Linux Ubuntu 20.04, that's `/home/gabriel/.config/sublime-text-3/Packages` (even though I am running Sublime Text **4**). 
 
 Now, extract this package to that folder.
 
 **Option 1: the GUI way:** click the green "Code" button above --> "Download ZIP" --> save the zip file, extract it to your `Packages` path above, and rename it to `gcode`. 
 
-**OR Option 2: the command-line way:** 
+**OR Option 2 [what I prefer]: the command-line way:** 
 ```bash
-# cd to the Packages dir
-cd path/to/Packages
+# --------------
+# Option 2.A: clone the repo directly into your "Packages" dir
+# --------------
+
+# cd to the Packages dir (change this path according to your Packages path above)
+cd "$HOME/.config/sublime-text-3/Packages"
 # clone the repo
 git clone https://github.com/ElectricRCAircraftGuy/sublime_gcode.git
 # rename the repo dir to "gcode"
 mv sublime_gcode gcode
+
+# --------------
+# OR Option 2.B [what I prefer]: clone the repo into wherever you want, and then
+# symlink it into your "Packages" dir
+# --------------
+
+# clone repo into ~/dev
+mkdir -p ~/dev
+cd ~/dev
+git clone https://github.com/ElectricRCAircraftGuy/sublime_gcode.git
+# now symlink it into your Packages dir
+ln -si ~/dev/sublime_gcode ~/.config/sublime-text-3/Packages/gcode
 ```
 
 That's it! The `gcode` entry is now instantly available in your syntax highlighting menu.
