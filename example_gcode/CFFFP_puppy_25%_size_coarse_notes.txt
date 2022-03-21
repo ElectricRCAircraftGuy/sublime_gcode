@@ -1,0 +1,5 @@
+Source where I first saw this model: https://www.make.toys/toys/golden_doodle__0
+
+Original creator / download the STL file here: https://www.thingiverse.com/thing:1776415
+
+I generated that gcode file from the STL, at 25% size, "Coarse" setting in the Cura slicer (https://ultimaker.com/software/ultimaker-cura).
