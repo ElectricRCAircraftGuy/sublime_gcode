@@ -12,6 +12,8 @@ Gabriel Staples
 <!-- MarkdownTOC -->
 
 1. [sublime_gcode](#sublime_gcode)
+    1. [Status](#status)
+    1. [Description](#description)
     1. [Inspired by these two projects:](#inspired-by-these-two-projects)
 1. [Installation](#installation)
     1. [1. Package Control](#NOT YET FUNCTIONAL; use manual method below for now)
@@ -38,6 +40,15 @@ Gabriel Staples
 
 <a id="sublime_gcode"></a>
 # sublime_gcode
+
+
+<a id="status"></a>
+## Status
+wip (work-in-progress); is about half complete, but it does work now if you want to use it now
+
+
+<a id="description"></a>
+## Description
 gcode (g-code) syntax highlighting for the Sublime Text editor; useful for viewing or editing CNC or 3D printer gcode files, including those from the [Ultimaker Cura](https://ultimaker.com/software/ultimaker-cura) slicer, [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/), or [Slic3r](https://github.com/slic3r/Slic3r), for instance. 
 
 [todo: add screenshot of the syntax highlighting here]
@@ -47,8 +58,10 @@ gcode (g-code) syntax highlighting for the Sublime Text editor; useful for viewi
 ## Inspired by these two projects:
 1. [gcode-syntax-highlighting](https://github.com/themachinist/gcode-syntax-highlighting), by @themachinist.
     1. my fork of it: https://github.com/ElectricRCAircraftGuy/gcode-syntax-highlighting
+    1. The `gcode` syntax in my project is _strongly influenced by_ @themachinist's work above. I used his work as an example and starting point as I wrote and modified the regular expression `match` patterns and `scope`s. My work differs significantly enough, however, that I decided to make my repo from scratch rather than making it a fork of his repo.
 1. The [zip file version by @digex, here](https://github.com/themachinist/gcode-syntax-highlighting/issues/2#issuecomment-106274142).
     1. See my [full installation instructions and notes on it here](https://github.com/themachinist/gcode-syntax-highlighting/issues/2#issuecomment-1073127156).
+    1. The `gcode-alternate` syntax in my project is an _exact copy_ of @digex's work in the zip file above.
 
 
 <a id="installation"></a>
