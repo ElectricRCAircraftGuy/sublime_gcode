@@ -46,13 +46,21 @@ contexts:
       scope: comment.line.gcode
     - comment: G28 "Home" cmd
       match: G28
-      scope: support.function.gcode markup.bold.gcode
+      scope: support.function.gcode markup.bold.gcode markup.italic.gcode
     - comment: Other G commands
       match: G\d+
-      scope: support.function.gcode
+      scope: support.function.gcode markup.bold.gcode
     - comment: M commands
       match: M\d+
       scope: entity.name.gcode
+    - comment: O program name
+      # See here: https://en.wikipedia.org/wiki/G-code#Letter_addresses
+      match: O\d+
+      scope: string.gcode markup.bold.gcode
+    - comment: N line numbers
+      # See here: https://en.wikipedia.org/wiki/G-code#Letter_addresses
+      match: N\d+
+      scope: string.gcode
     - comment: (flow control + location) operators
       # Italicize the numbers after `DO` and `GOTO`.
       match: (?i)(GOTO|DO) ?(\d*)
@@ -63,7 +71,7 @@ contexts:
         2: constant.numeric.value.gcode markup.italic.gcode
     - comment: flow control and condition operators
       # See: https://www.cnccookbook.com/cnc-g-code-macro-conditions-looping/
-      match: (?i)(IF|THEN|AND|OR|WHILE|END)
+      match: (?i)(IF|THEN|AND|OR|WHILE|END|REPEAT)
       scope: keyword.control.gcode
     - comment: functions
       match: (?i)(ABS|ACOS|ASIN|ATAN|COS|LN|EXP|FIX|FUP|MOD|ROUND|SQRT|SIN|TAN)
@@ -76,7 +84,7 @@ contexts:
       # For examples of variables in gcode, see:
       # https://gcodetutor.com/cnc-macro-programming/cnc-variables.html
       match: (#\d+)
-      scope: variable.other.gcode
+      scope: variable.other.gcode markup.bold.gcode
     - comment: assignment
       match: =
       scope: keyword.operator.assignment.gcode
@@ -85,53 +93,27 @@ contexts:
       # - ABC are *rotational positions* around the XYZ axes, respectively. See here:
       #   https://en.wikipedia.org/wiki/G-code.
       # - IJK are arc center positions; see Wikipedia article above.
-      # - For the unusual and complicated Number matching pattern, see the "Numbers" comment below
-      #   with my large explanation there.
-      match: ([XYZABCIJK])(-?\.?\d+\.?)(-?\.?\d+\.?)
+      match: ([XYZABCIJK])
       scope: entity.name.gcode
-      # scope: constant.numeric.gcode
-
-      ############
-      # match: ([XYZABC]{1})(?=([\d\.-])*)
-      # scope: variable.parameter.gcode
-      # captures:
-        # 1: variable.parameter.gcode
-        # 1: storage.type.gcode
-      # scope: markup.bold
-
-    - comment: parameters
+    - comment: parameters, such as feeds and speeds
+      # Including E Extruder feed position (E) and rate (F).
       # See EF here: https://marlinfw.org/docs/gcode/G000-G001.html
-      match: '[EF]'
+      # Other g-codes may use S for something? Add any parameters here.
+      match: ([EFS])
       scope: variable.parameter.gcode
-
     - comment: Numbers, including those with decimals in them.
       # NB: this will scan and match the same number **twice**, but two different parts of the same
       # number each time, in order to match the whole thing if it has a decimal in it. Ex:
       # `-0.1576`. The 1st match will be `-0.` and the 2nd match will be `1576`. This strange
       # technique allows it to also match difficult and non-standard numbers like `-7.`, `-.7`,
       # etc.
-      # - IF YOU CHANGE THIS REGEX, also change it above
       match: (-?\.?\d+\.?)
       scope: constant.numeric.value.gcode
-
     - comment: arithmetic operators
-      match: '[\+\-\/\*]'
+      match: ([\+\-\/\*])
       scope: keyword.operator.arithmetic.gcode markup.bold.gcode
-
-    # TODO: FIX "DO" AFTER "WHILE"!
-
-    # - comment: arc positions
-    #   match: '([IJK])(?=([\d\.-])*)'
-    #   scope: markup.italic
-    - comment: positions
-      match: '(?<=[XYZABC])([\d\.-])*'
-      scope: constant.numeric
-    - comment: feeds & speeds
-      match: '(?<= )[FS]([\d\.-])+'
-      scope: variable.parameter
-    - comment: O & N numbers
-      match: '([ON]([\d\.-])+)'
-      scope: support.function
     - comment: brackets
-      match: '(\[|\])'
-      scope: string.interpolated
+      match: ([\[\]])
+      # Alternative scope (is white in Monokai color scheme):
+      # scope: text.gcode punctuation.section.brackets.gcode
+      scope: string.brackets.gcode
