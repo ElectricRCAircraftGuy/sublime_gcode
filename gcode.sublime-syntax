@@ -64,9 +64,14 @@ contexts:
       match: (?<=GOTO|DO)\d+
       scope: markup.italic.gcode
     - comment: variables
+      match: (#\d+)
+      scope: variable.other.gcode
+    - comment: variables
       # For examples of variables in gcode, see:
       # https://gcodetutor.com/cnc-macro-programming/cnc-variables.html
-      match: (#\d+)?(=)?(\d*\.?\d*)
+      # Regex test for this match: https://regex101.com/r/QOdI0z/1
+      ################ CHANGE THIS TO BE 3 SEPARATE MATCHES, I THINK!, INSTEAD OF THIS MULTI-CAPTURE CLAUSE!
+      match: (#\d+)?(=)?(-?\d+\.?)
       # Specify the proper scope for each capture group; see:
       # http://www.sublimetext.com/docs/syntax.html
       captures:
@@ -78,11 +83,36 @@ contexts:
     # stranded/standalone numbers via the 3rd capture group.
 
     - comment: positions
-      match: ([XYZABC]{1})(?=([\d\.-])*)
-      scope: markup.bold
-    - comment: arc positions
-      match: '([IJK])(?=([\d\.-])*)'
-      scope: markup.italic
+      # - See XYZ (and EF) here: https://marlinfw.org/docs/gcode/G000-G001.html.
+      # - ABC are *rotational positions* around the XYZ axes, respectively. See here:
+      #   https://en.wikipedia.org/wiki/G-code.
+      # - IJK are arc center positions; see Wikipedia article above.
+      match: '[XYZABCIJK]'
+      scope: entity.name.gcode
+      # scope: constant.numeric.gcode
+
+      ############
+      # match: ([XYZABC]{1})(?=([\d\.-])*)
+      # scope: variable.parameter.gcode
+      # captures:
+        # 1: variable.parameter.gcode
+        # 1: storage.type.gcode
+      # scope: markup.bold
+
+    - comment: parameters
+      # See EF here: https://marlinfw.org/docs/gcode/G000-G001.html.
+      match: '[EF]'
+      scope: variable.parameter.gcode
+
+    - comment: arithmetic operators
+      match: '[\+\-\/\*]'
+      scope: keyword.operator.arithmetic.gcode markup.bold.gcode
+
+    # TODO: FIX "DO" AFTER "WHILE"!
+
+    # - comment: arc positions
+    #   match: '([IJK])(?=([\d\.-])*)'
+    #   scope: markup.italic
     - comment: positions
       match: '(?<=[XYZABC])([\d\.-])*'
       scope: constant.numeric
