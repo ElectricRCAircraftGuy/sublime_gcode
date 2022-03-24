@@ -1,0 +1,16 @@
+# Use this .gitattributes file to ignore packaging files that should NOT got into
+# Sublime Text Package Control, such as test files, images, etc.
+# See here: https://github.com/wbond/package_control_channel/pull/8501
+# > I use .gitattributes to exclude files from the package: images, test files, sublime-project/workspace.
+#
+# References:
+# 1. Official Documentation: https://www.git-scm.com/docs/gitattributes#_export_ignore
+# 1. Small example of how to make the file look, and use this file:
+#    https://stackoverflow.com/a/23822142/4561887
+# 1. How to check this file to ensure it's working: https://stackoverflow.com/a/41029650/4561887
+#    EX:
+#           git ls-files | git check-attr -a --stdin
+
+
+/disabled/*             export-ignore
+/screenshots/*          export-ignore
