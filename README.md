@@ -54,7 +54,7 @@ I still need to get it into Sublime Package Control, however.
 ## Description
 `gcode` (g-code) syntax highlighting for the Sublime Text editor; useful for viewing or editing CNC or 3D printer gcode files, including those from the [Ultimaker Cura](https://ultimaker.com/software/ultimaker-cura) slicer, [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/), or [Slic3r](https://github.com/slic3r/Slic3r), for instance. 
 
-[![screenshots of gcode syntax highlighting](screenshots/side-by-side.jpg)](screenshots/side-by-side.jpg)
+![screenshots of gcode syntax highlighting](screenshots/side-by-side.jpg)
 
 <a id="g-code-formats-flavors-and-standards"></a>
 ### G-code formats, "flavors", and standards:
