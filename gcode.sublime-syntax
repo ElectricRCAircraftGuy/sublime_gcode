@@ -28,6 +28,12 @@ contexts:
     # 1. It appears that matches are done in order, from top to bottom. If a higher up regex matches
     # first, subsequent (lower) regexes will be shadowed and NOT match. So, place more- specific
     # matches, such as `G28`, BEFORE more-general matches, such as `G\d+`!
+    # 1. If you specify multiple scope strings, each separated by a space, after the `scope:` key,
+    # all of the scopes specified will be applied to a match pattern. Ex: This applies both bold
+    # AND italic to this matching pattern:
+    #         comment: bold AND italic
+    #         match: G28
+    #         scope: markup.bold.gcode markup.italic.gcode
     # 1. Marlin-type gcode definitions are here, so you can see what each command/code does:
     # https://marlinfw.org/meta/gcode/
     # 1. Use https://regex101.com/ to verify, check, and understand the `match` regular expressions.
@@ -47,28 +53,37 @@ contexts:
     - comment: M commands
       match: M\d+
       scope: entity.name.gcode
-    - comment: flow control operators
+    - comment: (flow control + location) operators
+      match: (?i)(GOTO|DO) ?(\d*)
+      captures:
+        1: keyword.control.gcode
+        2: constant.numeric.value.gcode markup.italic.gcode
+    - comment: flow control and condition operators
       # See: https://www.cnccookbook.com/cnc-g-code-macro-conditions-looping/
-      match: IF|THEN|AND|OR|WHILE|GOTO
+      match: (?i)(IF|THEN|AND|OR|WHILE|END)
       scope: keyword.control.gcode
     - comment: functions
-      match: ABS|ACOS|ASIN|ATAN|COS|LN|EXP|FIX|FUP|MOD|ROUND|SQRT|SIN|TAN
+      match: (?i)(ABS|ACOS|ASIN|ATAN|COS|LN|EXP|FIX|FUP|MOD|ROUND|SQRT|SIN|TAN)
       scope: entity.name.gcode
     - comment: comparison operators
-      match: GT|LT|GE|LE|EQ
+      # Ex: https://www.machsupport.com/forum/index.php?topic=18453.0
+      match: (?i)(GT|LT|GE|LE|NE|EQ)
       scope: keyword.operator.gcode
-    - comment: flow control locations
-      # (I think) this uses positive lookbehind (see regex101.com and here:
-      # https://www.regular-expressions.info/lookaround.html) to match only the number following
-      # a `GOTO` or `DO` statement
-      match: (?<=GOTO|DO)\d+
-      scope: markup.italic.gcode
-    - comment: variables
-      match: (#\d+)
-      scope: variable.other.gcode
     - comment: variables
       # For examples of variables in gcode, see:
       # https://gcodetutor.com/cnc-macro-programming/cnc-variables.html
+      match: (#\d+)
+      scope: variable.other.gcode
+    - comment: Numbers, including those with decimals in them.
+      # NB: this will scan and match the same number **twice**, but two different parts of the same
+      # number each time, in order to match the whole thing if it has a decimal in it. Ex:
+      # `-0.1576`. The 1st match will be `-0.` and the 2nd match will be `1576`. This strange
+      # technique allows it to also match difficult and non-standard numbers like `-7.`, `-.7`,
+      # etc.
+      match: (-?\.?\d+\.?)
+      scope: constant.numeric.value.gcode
+
+    - comment: variables
       # Regex test for this match: https://regex101.com/r/QOdI0z/1
       ################ CHANGE THIS TO BE 3 SEPARATE MATCHES, I THINK!, INSTEAD OF THIS MULTI-CAPTURE CLAUSE!
       match: (#\d+)?(=)?(-?\d+\.?)

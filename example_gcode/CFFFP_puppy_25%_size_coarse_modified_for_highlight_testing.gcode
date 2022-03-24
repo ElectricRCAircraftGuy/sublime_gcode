@@ -24,6 +24,9 @@ WHILE [conditional] DO3
 IF [#100 EQ 0] GOTO 110
 GOTO 200
 
+goto 200 211
+do 11 12 E233
+
 IF
 #123
 THEN
@@ -36,9 +39,12 @@ GT
 LT
 GE EQ
 
+le goto if then while abs acos asin
+
 G
 
 ;Source: [Loop and condition by g-code command](https://stackoverflow.com/q/41471908/4561887)
+;SOURCE START
 #100 = 1
 WHILE [#100 LE 5] DO1
     (Some G-Code Blocks Go Here to Be Repeated Each Loop)
@@ -70,6 +76,7 @@ G0 Z-10
 G0 Z10
 o103 endrepeat
 G90
+;SOURCE END
 
 
 ;From: https://gcodetutor.com/cnc-macro-programming/cnc-variables.html
@@ -104,6 +111,9 @@ G1 F1800 X27.393 Y29.093 E0.02976
 G1 X27.568 Y28.943 E0.04126
 G1 X.568 Y28. E0.04126
 G1 X.5 Y2. E0.04126
+G1 X-.7 Y-.75 Z -1.7
+G1 X.7 Y0.75 Z 1.7
+G1 X13.7 Y0.75 Z 1.7
 G1 X-28.193 Y28.46 E0.08067
 G1 X28.863 Y-28.043 E0.12004
 G1 X29.528 Y27.69 E--+----0.1576
