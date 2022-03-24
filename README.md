@@ -12,7 +12,7 @@ Gabriel Staples
 <!-- MarkdownTOC -->
 
 1. [sublime_gcode](#sublime_gcode)
-    1. [Status](#status)
+    1. [Status: done! It works!](#status-done-it-works)
     1. [Description](#description)
         1. [G-code formats, "flavors", and standards:](#g-code-formats-flavors-and-standards)
             1. [Standards:](#standards)
@@ -45,9 +45,9 @@ Gabriel Staples
 # sublime_gcode
 
 
-<a id="status"></a>
-## Status
-wip (work-in-progress); is about half complete, but it does work now if you want to use it now
+<a id="status-done-it-works"></a>
+## Status: done! It works!
+I still need to get it into Sublime Package Control, however. 
 
 
 <a id="description"></a>
