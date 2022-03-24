@@ -14,6 +14,9 @@ Gabriel Staples
 1. [sublime_gcode](#sublime_gcode)
     1. [Status](#status)
     1. [Description](#description)
+        1. [G-code formats, "flavors", and standards:](#g-code-formats-flavors-and-standards)
+            1. [Standards:](#standards)
+            1. [G-code "Flavors"](#g-code-flavors)
     1. [Inspired by these two projects:](#inspired-by-these-two-projects)
 1. [Installation](#installation)
     1. [1. Package Control](#NOT YET FUNCTIONAL; use manual method below for now)
@@ -52,6 +55,34 @@ wip (work-in-progress); is about half complete, but it does work now if you want
 gcode (g-code) syntax highlighting for the Sublime Text editor; useful for viewing or editing CNC or 3D printer gcode files, including those from the [Ultimaker Cura](https://ultimaker.com/software/ultimaker-cura) slicer, [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/), or [Slic3r](https://github.com/slic3r/Slic3r), for instance. 
 
 [todo: add screenshot of the syntax highlighting here]
+
+<a id="g-code-formats-flavors-and-standards"></a>
+### G-code formats, "flavors", and standards:
+
+This should be able to handle and highlight a variety of gcode formats and styles, including the following. If you have any problems, screenshot the syntax highlighting you see, [open a new Issue](https://github.com/ElectricRCAircraftGuy/sublime_gcode/issues), paste the screenshot _and_ a large chunk of the gcode for me to play with and test, and explain what formatting or highlighting you would have _expected_ to see. The main reference for the following list is this: https://en.wikipedia.org/wiki/G-code.
+
+<a id="standards"></a>
+#### Standards:
+1. RS-274
+1. ISO 6983
+1. DIN 66025
+1. PN-73M-55256 and PN-93/M-55251
+
+<a id="g-code-flavors"></a>
+#### G-code "Flavors" 
+(As shown from the drop-down menu for the Machine Settings in the [Cura 3D printer slicer software](https://en.wikipedia.org/wiki/Cura_(software))):
+
+![image](https://user-images.githubusercontent.com/6842199/159841238-d71c1aff-6fba-42cc-92da-ace4b257bc84.png)
+
+1. Marlin
+1. Marlin (Volumetric)
+1. RepRap
+1. Ultimaker 2
+1. Griffin
+1. Makerbot
+1. Bits from Bytes
+1. Mach3
+1. Repetier
 
 
 <a id="inspired-by-these-two-projects"></a>
