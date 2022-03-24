@@ -18,6 +18,10 @@ If you have any problems with the `gcode` syntax highlighting, please provide th
 
 
 ## 2. Any links to any documentation or resources pertaining to this flavor of gcode syntax:
+1. URL 1
+1. URL 2
+1. URL 3
+1. etc.
 
 
 ## 3. Explain what formatting or highlighting you would have _expected_ to see:
