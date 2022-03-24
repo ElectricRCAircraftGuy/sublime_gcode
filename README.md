@@ -47,7 +47,7 @@ Gabriel Staples
 
 <a id="status-done-it-works"></a>
 ## Status: done! It works!
-I still need to get it into Sublime Package Control, however. 
+I still need to get it into Sublime Package Control, however. A PR to do that is open here: https://github.com/wbond/package_control_channel/pull/8501.
 
 
 <a id="description"></a>
