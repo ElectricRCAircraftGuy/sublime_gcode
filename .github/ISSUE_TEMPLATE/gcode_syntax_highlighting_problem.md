@@ -17,15 +17,16 @@ If you have any problems with the `gcode` syntax highlighting, please provide th
 ## 1. A screenshot of the syntax highlighting you see:
 
 
-## 2. Copy and paste a large chunk of the gcode for me to play with and test:
+## 2. Any links to any documentation or resources pertaining to this flavor of gcode syntax:
+
+
+## 3. Explain what formatting or highlighting you would have _expected_ to see:
+
+
+## 4. Copy and paste a large chunk of the gcode for me to play with and test:
 
 ```gcode
 ;paste large chunk of gcode here
+G1 X30.977 Y27.046 E0.23681
+G1 X31.177 Y26.98 E0.24732
 ```
-
-
-## 3. Any links to any documentation or resources pertaining to this flavor of gcode syntax:
-
-
-## 4. Explain what formatting or highlighting you would have _expected_ to see:
-
