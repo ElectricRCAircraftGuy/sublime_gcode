@@ -20,6 +20,7 @@ G92 E0
 G1 F200 E3
 WHILE [conditional] DO3
 
+; From: https://www.cnccookbook.com/cnc-g-code-macro-conditions-looping/
 IF [#100 EQ 0] GOTO 110
 GOTO 200
 
@@ -36,6 +37,40 @@ LT
 GE EQ
 
 G
+
+;Source: [Loop and condition by g-code command](https://stackoverflow.com/q/41471908/4561887)
+#100 = 1
+WHILE [#100 LE 5] DO1
+    (Some G-Code Blocks Go Here to Be Repeated Each Loop)
+    #100 = #100 + 1 (Increase #100 by 1 each iteration of the loop)
+END1
+
+;%
+/ Tool is set at starting position.  Enter the conditional loop
+
+#100 = 1
+
+o101 while [#100 le 5]
+
+G1 X -0.02 F10
+G54 Z -.25 F10
+G0 X0.0
+G54 Z0.0
+
+#100 = [#100 + 1]
+
+o101 endwhile
+
+M2
+;%
+
+G91
+o103 repeat [5]
+G0 Z-10
+G0 Z10
+o103 endrepeat
+G90
+
 
 ;From: https://gcodetutor.com/cnc-macro-programming/cnc-variables.html
 #101=35.0 (DIA A);

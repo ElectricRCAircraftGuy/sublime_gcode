@@ -59,7 +59,7 @@ gcode (g-code) syntax highlighting for the Sublime Text editor; useful for viewi
 <a id="g-code-formats-flavors-and-standards"></a>
 ### G-code formats, "flavors", and standards:
 
-This should be able to handle and highlight a variety of gcode formats and styles, including the following. If you have any problems, screenshot the syntax highlighting you see, [open a new Issue](https://github.com/ElectricRCAircraftGuy/sublime_gcode/issues), paste the screenshot _and_ a large chunk of the gcode for me to play with and test, and explain what formatting or highlighting you would have _expected_ to see. The main reference for the following list is this: https://en.wikipedia.org/wiki/G-code.
+This should be able to handle and highlight a variety of gcode formats and styles, including the following. If you have any problems, screenshot the syntax highlighting you see, [open a new Issue](https://github.com/ElectricRCAircraftGuy/sublime_gcode/issues), paste the screenshot _and_ a large chunk of the gcode for me to play with and test, _and_ links to any documentation pertaining to this flavor of gcode syntax, and explain what formatting or highlighting you would have _expected_ to see. The main reference for the following list is this: https://en.wikipedia.org/wiki/G-code.
 
 <a id="standards"></a>
 #### Standards:
