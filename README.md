@@ -57,7 +57,10 @@ I still need to get it into Sublime Package Control, however. A PR to do that is
 
 Screenshots of Sublime Text 4 with Color Scheme `Monokai` and `gcode` syntax highlighter:
 
-![screenshots of gcode syntax highlighting](screenshots/small.jpg)
+<p align="center" width="100%">
+    <img width="42%" src="screenshots/small.jpg">
+    <img width="56%" src="screenshots/gcode_in_menu.jpg">
+</p>
 
 ![screenshots of gcode syntax highlighting](screenshots/side-by-side.jpg)
 
