@@ -57,7 +57,9 @@ I still need to get it into Sublime Package Control, however. A PR to do that is
 
 Screenshots of Sublime Text 4 with Color Scheme `Monokai` and `gcode` syntax highlighter:
 
-[![screenshots of gcode syntax highlighting](screenshots/side-by-side.jpg)](screenshots/side-by-side.jpg)
+![screenshots of gcode syntax highlighting](screenshots/small.jpg)
+
+![screenshots of gcode syntax highlighting](screenshots/side-by-side.jpg)
 
 <a id="g-code-formats-flavors-and-standards"></a>
 ### G-code formats, "flavors", and standards:
