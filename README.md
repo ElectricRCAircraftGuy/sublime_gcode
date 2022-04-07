@@ -19,7 +19,7 @@ Gabriel Staples
             1. [G-code "Flavors"](#g-code-flavors)
     1. [Inspired by these two projects:](#inspired-by-these-two-projects)
 1. [Installation](#installation)
-    1. [1. Package Control](#NOT YET FUNCTIONAL; use manual method below for now)
+    1. [1. Package Control](#1-package-control)
     1. [2. Manual installation](#2-manual-installation)
 1. [Issues](#issues)
 1. [Developer Notes & Package Development Tutorial](#developer-notes--package-development-tutorial)
@@ -47,8 +47,7 @@ Gabriel Staples
 
 <a id="status-done-it-works"></a>
 ## Status: done! It works!
-I still need to get it into Sublime Package Control, however. A PR to do that is open here: https://github.com/wbond/package_control_channel/pull/8501.
-
+This is the PR that got this package into Sublime Package Control: https://github.com/wbond/package_control_channel/pull/8501
 
 <a id="description"></a>
 ## Description
@@ -106,10 +105,14 @@ This should be able to handle and highlight a variety of gcode formats and style
 <a id="installation"></a>
 # Installation
 
-<a id="NOT YET FUNCTIONAL; use manual method below for now"></a>
-## 1. Package Control [NOT YET FUNCTIONAL; use manual method below for now]
+<a id="1-package-control"></a>
+## 1. Package Control
 
 Open the Command Palette via `Tools` --> `Command Palette...`, _or_ by pressing <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>. Then, search for `install package`, and click on `Package Control: Install Package`. Search for "gcode", and install the package by that name. `gcode` is now available as one of the syntax highlighting options. 
+
+If you ever want to remove it, use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> and then search for `Package Control: Remove Package`. Select it, and then search for `gcode`.
+
+To list all installed packages, use <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> and then `Package Control: List Packages`.
 
 
 <a id="2-manual-installation"></a>

@@ -4,12 +4,15 @@
 <dict>
 	<key>fileTypes</key>
 	<array>
+		<!-- File extensions commented out here so that the main
+		`gcode` highligher gets used by default instead of this one!
 		<string>eia</string>
 		<string>nc</string>
 		<string>ngc</string>
 		<string>prg</string>
 		<string>mpf</string>
 		<string>gcode</string>
+		-->
 	</array>
 	<key>name</key>
 	<string>gcode-alternate</string>
