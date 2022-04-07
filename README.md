@@ -47,7 +47,17 @@ Gabriel Staples
 
 <a id="status-done-it-works"></a>
 ## Status: done! It works!
-This is the PR that got this package into Sublime Package Control: https://github.com/wbond/package_control_channel/pull/8501
+
+This is the PR that got this package into Sublime Package Control: https://github.com/wbond/package_control_channel/pull/8501. 
+
+Here is this package on the Package Control website: https://packagecontrol.io/packages/gcode. As of its release into Package Control on 7 Apr. 2022, the existing number of downloads for the package were actually all for the package this one replaces, named [gcode-syntax-highlighting](https://github.com/themachinist/gcode-syntax-highlighting), by [@themachinist](https://github.com/themachinist). The existing number of downloads for that older package were (hover over the numbers on the package control website above to see them):
+1. Total: 8453
+2. Windows: 5113
+3. Mac: 2107
+4. Linux: 1233
+
+Therefore, only numbers _beyond these counts_ are the number of downloads of this new `gcode` package provided by this repo.
+
 
 <a id="description"></a>
 ## Description
@@ -94,7 +104,7 @@ This should be able to handle and highlight a variety of gcode formats and style
 
 <a id="inspired-by-these-two-projects"></a>
 ## Inspired by these two projects:
-1. [gcode-syntax-highlighting](https://github.com/themachinist/gcode-syntax-highlighting), by @themachinist.
+1. [gcode-syntax-highlighting](https://github.com/themachinist/gcode-syntax-highlighting), by [@themachinist](https://github.com/themachinist).
     1. my fork of it: https://github.com/ElectricRCAircraftGuy/gcode-syntax-highlighting
     1. The `gcode` syntax in my project is _strongly influenced by_ @themachinist's work above. I used his work as an example and starting point as I wrote and modified the regular expression `match` patterns and `scope`s. My work differs significantly enough, however, that I decided to make my repo from scratch rather than making it a fork of his repo.
 1. The [zip file version by @digex, here](https://github.com/themachinist/gcode-syntax-highlighting/issues/2#issuecomment-106274142).
